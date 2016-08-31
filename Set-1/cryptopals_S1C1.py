@@ -55,16 +55,30 @@ print ("\n\n\nBinary value of the hex string is: \n", bin_string)
 print ("\n\n\nlength of binary string:\n",len(bin_string))
 
 
-#Put the padding zeroes at the end of binary string
+#Put the padding zeroes at the end of binary string. Store number of
+#pad characters to be applied at end of base64 string in the variable
+#pad_chars
 
 print ("\n\n\nPadding with extra 0s if necessary.......")
 
 if len(bin_string) > 24 and len(bin_string) % 24 != 0 :
+
+    pad_flag = 1
+    pad_chars = ( 24 - (len(bin_string) % 24)) % 6
+
     for k in ( 24 - (len(bin_string) % 24)):
         bin_string = bin_string + '0'
+
 elif len(bin_string) < 24:
+
+    pad_flag = 1
+    pad_chars = ( 24 - (len(bin_string) % 24)) % 6
+
     for k in range(24 - len(bin_string)):
         bin_string = bin_string + '0'
+
+
+
 else:
     pass
 
@@ -80,7 +94,7 @@ print ("\n\n\nLength of padded string: \n", len(bin_string))
 #Grouping the padded binary into groups of 6 bits and then mapping it to the base_64_dict
 #inlcude code for padding with = symbol
 
-print ("\n\n\nConverting to Base64.....\n\n", bin_string)
+print ("\n\n\nConverting to Base64.....\n\n")
 fin_base64_string = ''
 r = 0
 i=1
@@ -89,6 +103,13 @@ while i <= (len(bin_string)) / 6 :
     fin_base64_string = fin_base64_string + base_64_dict[int((bin_string[r:r + 6]),2)]
     r = r + 6
     i = i+1
+
+
+#If the string was not multiple of 24 and has at least 6 trailing zeroes, then convert the A character to pad sign ('=')
+if pad_flag == 1 :
+    for i in range(pad_chars)
+        
+
 
 
 #debug code
