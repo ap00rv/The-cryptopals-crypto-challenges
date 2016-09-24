@@ -39,8 +39,9 @@ ciphertext = raw_input("Please enter the hex encoded ciphertext:").upper()
 bin_ciphertext = ''
 bin_ciphertext = bin_ciphertext + Conv_Hex_To_Bin(ciphertext)
 
-print "Ciphertext in binary is\n\n" + bin_ciphertext + "\n\n"
-print "Length is \n\n" + str(len(bin_ciphertext))
+
+print "Ciphertext in binary is\n\n" + str(bin_ciphertext) + "\t\t"
+print "Length is \n\n" + str(len(str(bin_ciphertext)))
 
 #Using each ascii character as a key, XOR the key
 #with ciphertext and store results in a dictionary
@@ -52,12 +53,17 @@ for i in range (32,127,1):
     #key_dict.update({ chr(i) : bin(int(binascii.hexlify(chr(i)), 16))})
     key_dict.update({ (str(bin(int(binascii.hexlify(chr(i)), 16))).replace("0b","",1)).zfill(8) : chr(i) })
 
+
 print "\n\n\n The dictionary is : \n\n\n\n%r" %key_dict
 
-for k in range(len(key_dict)):
+#Define a scoring dictionary updated after getting plaintext in each iteration of the loop below
+
+Score_dict = {}
+
+for k in key_dict:
     key = ''
     for i in range(len(bin_ciphertext)/8):
-        key = key + key_dict[key_dict.keys()[3]]
+        key = key + k
 
 print "\n\n\n\nkey is " + key + "\n\n\n\n"
-print "Length of the key is " + len(key)
+print "Length of the key is " + str(len(key))
